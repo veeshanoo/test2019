@@ -1,0 +1,36 @@
+﻿@model test2019.Models.Recenzie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@*
+    @Html.Display("Author")
+    @Html.DisplayFor(b => b.Author)
+*@
+
+@Html.Label("Nota", "Nota:")
+<br />
+<p>@Model.Nota</p>
+
+@Html.Label("Autor", "Autor:")
+<br />
+<p>@Model.Autor</p>
+
+@Html.Label("Nume film", "Nume film:")
+<br />
+<p>@Model.Film.Denumire</p>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Recenzie", method: FormMethod.Get, routeValues: new { id = Model.IDRecenzie }))
+{
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Recenzie", method: FormMethod.Post, routeValues: new { id = Model.IDRecenzie }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+<br />

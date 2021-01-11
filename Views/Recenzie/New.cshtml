@@ -1,0 +1,33 @@
+﻿@model test2019.Models.Recenzie
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+@Html.ActionLink("Recenzii", "AfisareRecenzii")
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Recenzie", method: FormMethod.Post))
+{
+    @Html.Label("Nota", "Nota:")
+    <br />
+    @Html.TextBoxFor(b => b.Nota, null, new { placeholder = "Type in the rating", @class = "form-control", @type = "number", @min = 1, @max = 5 })
+    @Html.ValidationMessageFor(b => b.Nota, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Autor", "Autor:")
+    <br />
+    @Html.TextBoxFor(b => b.Autor, null, new { placeholder = "Enter the author", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Nota, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Movie", "Movie:")
+    <br />
+    @Html.DropDownListFor(b => b.IDFilm, new SelectList(Model.FilmList, "Value", "Text"), new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.IDFilm, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}
+

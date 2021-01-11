@@ -1,0 +1,34 @@
+﻿﻿@model test2019.Models.Recenzie
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Recenzie", routeValues: new { id = @Model.IDRecenzie }))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    @*@Html.HiddenFor(b => b.IDFilm)*@
+
+    <br />
+    @Html.Label("Nota", "Nota:")
+    <br />
+    @Html.EditorFor(b => b.Nota, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = 1, @max = 5 } })
+    @Html.ValidationMessageFor(b => b.Nota, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Autor", "Autor:")
+    <br />
+    @Html.EditorFor(b => b.Autor, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(b => b.Autor, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Movie", "Movie:")
+    <br />
+    @Html.DropDownListFor(b => b.IDFilm, new SelectList(Model.FilmList, "Value", "Text"), "Choose a movie type", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.IDFilm, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Update</button>
+}

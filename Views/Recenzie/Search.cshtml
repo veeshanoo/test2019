@@ -1,0 +1,27 @@
+﻿@model test2019.Controllers.SearchRequest
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+@Html.ActionLink("Recenzii", "AfisareRecenzii")
+
+@using (Html.BeginForm(actionName: "AfisareRecenzii", controllerName: "Recenzie", method: FormMethod.Get))
+{
+    @Html.Label("Nota", "Nota:")
+    <br />
+    @Html.TextBoxFor(b => b.Nota, null, new { placeholder = "Type in the rating", @class = "form-control", @type = "number", @min = 1, @max = 5 })
+    @Html.ValidationMessageFor(b => b.Nota, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Autor", "Autor:")
+    <br />
+    @Html.TextBoxFor(b => b.Autor, null, new { placeholder = "Enter the author", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Autor, "", new { @class = "text-danger" })
+    <br />
+
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+}
+

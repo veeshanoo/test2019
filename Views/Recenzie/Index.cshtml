@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+@Html.ActionLink("Add review", "New")
+@Html.ActionLink("Search", "Search")
+
+@foreach (var recenzie in ViewBag.Recenzii)
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            @Html.Label("Nota", "Nota:")
+            <br />
+            <p>@recenzie.Nota</p>
+
+            @Html.Label("Autor", "Autor:")
+            <br />
+            <p>@recenzie.Autor</p>
+
+            @using (Html.BeginForm(actionName: "Details", controllerName: "Recenzie", method: FormMethod.Get, routeValues: new { id = recenzie.IDRecenzie }))
+            {
+                <button class="btn btn-primary">Details</button>
+            }
+        </div>
+    </div>
+}
