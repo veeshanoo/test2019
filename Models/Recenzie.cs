@@ -14,6 +14,7 @@ namespace test2019.Models
         [Key]
         public int IDRecenzie { get; set; }
         public int Nota { get; set; }
+        [MinLength(2, ErrorMessage = "length cannot be less than 2")]
         public string Autor { get; set; }
         public int IDFilm { get; set; }
 

@@ -22,9 +22,9 @@ namespace test2019.Controllers
         [Route("Recenzie/AfisareRecenzii")]
         public ActionResult Index(int? nota, string autor)
         {
-            if (nota.HasValue)
+            if (!nota.ToString().Equals(""))
             {
-                if (autor != null)
+                if (!string.IsNullOrEmpty(autor))
                 {
                     List<Recenzie> recenzii = db.Recenzie.Where(x => x.Nota == nota).Where(x => x.Autor == autor).ToList();
                     List<Recenzie> sortedRecenzii = recenzii.OrderByDescending(x => x.Nota).ToList();
@@ -37,7 +37,7 @@ namespace test2019.Controllers
                     ViewBag.Recenzii = sortedRecenzii;
                     return View();
                 }
-            } else if (autor != null)
+            } else if (!string.IsNullOrEmpty(autor))
             {
                 List<Recenzie> recenzii = db.Recenzie.Where(x => x.Autor == autor).ToList();
                 List<Recenzie> sortedRecenzii = recenzii.OrderByDescending(x => x.Nota).ToList();
